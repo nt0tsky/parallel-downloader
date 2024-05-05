@@ -23,8 +23,18 @@ func (s *MemoryStorage) CreateFile(fileName string, fileSize int64) (FileHandle,
 	}
 
 	s.logger.Printf("Created file %s", fileName)
-	file.Seek(fileSize-1, io.SeekStart)
-	file.Write([]byte{0})
+	_, err = file.Seek(fileSize-1, io.SeekStart)
+	if err != nil {
+		s.logger.Printf("Error seeking to file %s", fileName)
+		return nil, err
+	}
+
+	_, err = file.Write([]byte{0})
+	if err != nil {
+		s.logger.Printf("Error writing to file %s", fileName)
+		return nil, err
+	}
+
 	return file, nil
 }
 

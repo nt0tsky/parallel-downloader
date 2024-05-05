@@ -27,10 +27,10 @@ func main() {
 	}
 	logger.Printf("preferences: %#v", p)
 
-	storage := storage.NewMemoryStorage(logger, p.DestinationFolder)
-	downloader := downloader.NewDownloader(logger, storage, p.Threads, p.Url)
+	s := storage.NewMemoryStorage(logger, p.DestinationFolder)
+	d := downloader.NewDownloader(logger, s, p.Threads, p.Url)
 
-	err = downloader.Start()
+	err = d.Start()
 	if err != nil {
 		logger.Printf("ERR: %#v", err)
 	}
