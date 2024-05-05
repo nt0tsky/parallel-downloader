@@ -1,0 +1,17 @@
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+/go.sum
+/bin/
+/doc/
+/coverage/
+/vendor/
+*.compiled
+*_generated.go
+.env
+.DS_Store
+.idea
